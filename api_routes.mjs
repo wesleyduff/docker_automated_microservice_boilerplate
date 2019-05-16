@@ -26,9 +26,9 @@ export default {
         })
         /**
          * @swagger
-         * /post_example:
+         * /post_example_send:
          *   post:
-         *     description: send a post request
+         *     description: Make a call to send data to a post endpoint
          *     responses:
          *       201:
          *         description: Returns ingest data
@@ -36,7 +36,7 @@ export default {
          *         something went wrong
          *
          */
-        app.get('/post_example', async (req, res) => {
+        app.get('/post_example_send', async (req, res) => {
             try {
                 const requestPost = await BasicsApi.post_example();
                 res.setHeader('Content-Type', 'application/json');
@@ -81,9 +81,11 @@ export default {
          *         something went wrong
          *
          */
-        app.put('/put_example', async (req, res) => {
+        //todo:// allow swagger to add data in swagger doc
+        app.put('/put_example/:name', async (req, res) => {
             try {
-                const requestPut = await BasicsApi.put_example(req.body);
+                const nameParam = req.param.name;
+                const requestPut = await BasicsApi.put_example(nameParam, req.body);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(requestPut);
             } catch(exception){

@@ -64,15 +64,12 @@ export default  {
             }
         })
     },
-    put_example: (body) => {
+    put_example: (filter, data) => {
         return new Promise(async (resolve, reject) => {
             try{
-                const querySelector = {
-                    name: body.name
-                };
-                const newvalues = { $set: {"address" : "home", "isActive": true } };
+                const   replacement = data;
 
-                const result = await global.DAO['mycollection'].update(querySelector, newvalues, {upsert: true});
+                const result = await global.DAO['mycollection'].replaceOne(filter, replacement, {upsert: true});
 
                 resolve({
                     code: 201,
