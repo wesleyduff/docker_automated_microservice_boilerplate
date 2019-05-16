@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "node --experimental-modules scripts/pre_start.mjs",
     "start": "NODE_ENV=start node --experimental-modules scripts/run_start.mjs",
-    "poststart": "NODE_ENV=start node --experimental-modules app.mjs",
+    "poststart": "NODE_ENV=start node --inspect --experimental-modules app.mjs",
     "prelocal": "node --experimental-modules scripts/local/pre_local.mjs",
     "local": "NODE_ENV=local node --experimental-modules scripts/local/build_local.mjs",
     "postlocal": "NODE_ENV=local node --experimental-modules scripts/local/post_local.mjs",
