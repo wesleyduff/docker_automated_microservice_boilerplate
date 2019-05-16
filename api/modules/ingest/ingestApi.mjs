@@ -11,7 +11,7 @@ export default  {
                     resolve({
                         status: 'started',
                         data,
-                        message : 'Demo of working api call to mongo db'
+                        message : 'Demo of working api call to mongo db - CHANGE 2'
                     })
                 })
                 .catch(exception => {

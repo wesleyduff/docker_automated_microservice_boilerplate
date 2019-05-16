@@ -9,6 +9,7 @@ export default {
     },
     docker: {
         local_docker_file_path: './Docker/docker_files/Dockerfile_local',
+        bindmount: true, //set to true if you want to edit files on local machine and see them change within the docker container
         image: {
             name: 'localexample', //must be LOWERCASE
             version: 'v1'

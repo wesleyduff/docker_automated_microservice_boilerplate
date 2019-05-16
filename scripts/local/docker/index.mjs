@@ -1,10 +1,10 @@
 import chalk from "chalk";
 import shell from "shelljs";
 
-export default (_config, buildDockerImage) => {
+export default (config, buildDockerImage) => {
 
 console.log(chalk.yellow(`
-============= BUILDING IMAGE :  ${_config.docker.image.name}:${_config.docker.image.version}====================IMAGE NAME===============
+============= BUILDING IMAGE :  ${config.docker.image.name}:${config.docker.image.version}====================IMAGE NAME===============
 `));
 
 
@@ -31,15 +31,25 @@ console.log(chalk.yellow(`
 
 
 
-
-/**
- * running docker container : NOTE THIS ONLY WORKS FOR MAC>.. Instead of "open" there will be another command for windows.
- * Windows users will have to open it themselves
- */
-shell.exec(`
-        docker run -p 3000:3000 -d --name ${_config.docker.image.name} ${_config.docker.image.name}:${_config.docker.image.version}
+if(config.docker.bindmount){
+    /**
+     * running docker container : NOTE THIS ONLY WORKS FOR MAC>.. Instead of "open" there will be another command for windows.
+     * Windows users will have to open it themselves
+     */
+    shell.exec(`
+        docker run -p 3000:3000 -d --name ${config.docker.image.name} -v $PWD:/data/apps/raven-web ${config.docker.image.name}:${config.docker.image.version}
         open http://localhost:3000
     `)
+} else {
+    /**
+     * running docker container : NOTE THIS ONLY WORKS FOR MAC>.. Instead of "open" there will be another command for windows.
+     * Windows users will have to open it themselves
+     */
+    shell.exec(`
+        docker run -p 3000:3000 -d --name ${config.docker.image.name} ${config.docker.image.name}:${config.docker.image.version}
+        open http://localhost:3000
+    `)
+}
 
 
 

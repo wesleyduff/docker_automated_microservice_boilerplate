@@ -9,6 +9,14 @@
 - run locallin in a DOCKER CONTAINER * : `npm run local`
 - package up for handoff to QA * : `npm run stage`
 
+**Running local changes in docker container**
+- set config to true for bindmount inside local config file : localed under docker
+- run container
+- make changes
+- restart container
+  - get container name, if you do not know it : `docker ps -a`
+  - restart container : `docker restart <name>`
+
 ### INSTALL REQUIREMENTS
 Docker must be installed on your system : [install docker (mac)](https://docs.docker.com/docker-for-mac/install/)
 
