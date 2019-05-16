@@ -1,0 +1,21 @@
+dockerImages/
+dockerImage/*
+Docker/*
+*/docker_files
+build/
+build/*
+__tests__
+*.tar
+
+package-lock.json
+
+*.tar
+
+# ide
+.idea
+.idea/*
+
+.DS_Store
+*/.DS_Store
+
+

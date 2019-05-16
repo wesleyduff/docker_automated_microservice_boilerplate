@@ -1,0 +1,75 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "node --experimental-modules scripts/pre_start.mjs",
+    "start": "NODE_ENV=start node --experimental-modules scripts/run_start.mjs",
+    "poststart": "NODE_ENV=start node --experimental-modules app.mjs",
+    "prelocal": "node --experimental-modules scripts/local/pre_local.mjs",
+    "local": "NODE_ENV=local node --experimental-modules scripts/local/build_local.mjs",
+    "postlocal": "NODE_ENV=local node --experimental-modules scripts/local/post_local.mjs",
+    "prestage": "node --experimental-modules scripts/stage/pre_stage.mjs",
+    "stage": "NODE_ENV=stage node --experimental-modules scripts/stage/build_stage.mjs",
+    "poststage": "node --experimental-modules scripts/stage/post_stage.mjs",
+    "stage-push": "NODE_ENV=stage node --experimental-modules scripts/stage/docker/push_to_aws.mjs",
+    "preprod": "node --experimental-modules scripts/prod/build_prod.mjs",
+    "prod": "node scripts/prod/run_prod.js",
+    "postprod": "node scripts/prod/post_prod.js",
+    "docker-start": "node --experimental-modules app.mjs",
+    "clean-docker": "NODE_ENV=local node --experimental-modules scripts/misc/clean_images.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.3",
+    "raven-utils": "git+ssh://git@stash.dev-charter.net:7999/snews/raven-utils.git#master",
+    "raven-dao": "git+ssh://git@stash.dev-charter.net:7999/snews/raven-dao.git#npm-erize",
+    "api": "./api",
+    "swagger-jsdoc": "^3.2.7",
+    "swagger-ui-express": "^4.0.2",
+    "node-fetch": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.0.1",
+    "chalk": "^2.4.2",
+    "eslint": "5.12.1",
+    "eslint-loader": "2.1.1",
+    "eslint-plugin-import": "2.15.0",
+    "rimraf": "2.6.3",
+    "shelljs": "^0.8.3",
+    "jest": "^24.7.1"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "no-debugger": "off",
+      "no-console": "off",
+      "no-unused-vars": "warn"
+    }
+  }
+}
