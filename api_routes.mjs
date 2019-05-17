@@ -10,7 +10,7 @@ Defininitions (schemas) for object types
  * @swagger
  *
  * definitions:
- *  PostResultSuccess:
+ *  DbChangeSuccess:
  *      properties:
  *          n:
  *              type: integer
@@ -47,7 +47,7 @@ Defininitions (schemas) for object types
  *              type: string
  *              example: 'Document created and added to database'
  *          result:
- *              $ref: '#/definitions/PostResultSuccess'
+ *              $ref: '#/definitions/DbChangeSuccess'
  *  200:
  *      properties:
  *          code:
@@ -57,7 +57,7 @@ Defininitions (schemas) for object types
  *              type: string
  *              example: 'Request received from databse'
  *          result:
- *              type: object
+ *              $ref: '#/definitions/DbChangeSuccess'
  *  500:
  *      properties:
  *          code:
@@ -66,6 +66,14 @@ Defininitions (schemas) for object types
  *          message:
  *              type: string
  *              example: 'Server Error'
+ *  400:
+ *      properties:
+ *          code:
+ *              type: integer
+ *              example: 400
+ *          message:
+ *              type: string
+ *              example: 'Parameters were not provided as exected. Wrong SYNTAX'
  */
 
 
@@ -107,6 +115,10 @@ export default {
          *         description: Saves a new document to the database and returns the result and a message
          *         schema:
          *           $ref: '#/definitions/201'
+         *       400:
+         *         description: Parameters provided are not correct
+         *         schema:
+         *           $ref: '#/definitions/400'
          *       500:
          *         description: Something went wrong
          *         schema:
@@ -143,6 +155,10 @@ export default {
          *            description: Saves a new document to the database and returns the result and a message
          *            schema:
          *              $ref: '#/definitions/201'
+         *          400:
+         *            description: Parameters provided are not correct
+         *            schema:
+         *              $ref: '#/definitions/400'
          *          500:
          *            description: Something went wrong
          *            schema:
@@ -157,6 +173,45 @@ export default {
                 res.setHeader('Content-Type', 'application/json');
                 res.send(requestPut);
             } catch(exception){
+                res.setHeader('Content-Type', 'application/json');
+                res.send({error: exception});
+            }
+        })
+        /**
+         * @swagger
+         * /delete_example/{id}:
+         *  delete:
+         *   parameters:
+         *     - in: path
+         *       name: id
+         *       required: true
+         *       schema:
+         *         type: string
+         *         example: '5cc1ec76bea30824ed9618e2'
+         *   description: Delete a document by ID
+         *   responses:
+         *     200:
+         *       description: Successfully deleted document from database
+         *       schema:
+         *         $ref: '#/definitions/200'
+         *     400:
+         *       description: Parameters provided are not correct
+         *       schema:
+         *         $ref: '#/definitions/400'
+         *     500:
+         *       description: Something went wrong
+         *       schema:
+         *         $ref: '#/definitions/500'
+         *
+         */
+        app.delete('/delete_example/:id', async(req, res) => {
+            try{
+                const id = req.params.id;
+                const requestDelete = await BasicsApi.delete_example(id);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(requestDelete);
+            }
+            catch(exception){
                 res.setHeader('Content-Type', 'application/json');
                 res.send({error: exception});
             }

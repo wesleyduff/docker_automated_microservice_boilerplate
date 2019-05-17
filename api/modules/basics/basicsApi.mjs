@@ -61,5 +61,29 @@ export default  {
                 })
             }
         })
+    },
+    delete_example: (id)=> {
+        return new Promise(async (resolve, reject) => {
+            if(!id){
+                reject({
+                    code: 400,
+                    exception: 'Bad request : id not provided'
+                })
+            }
+            try{
+                const result = await global.DAO['mycollection'].deleteById(id);
+
+                resolve({
+                    code: 200,
+                    message: 'Document was deleted',
+                    result
+                })
+            } catch(exception) {
+                reject({
+                    code: 500,
+                    exception: exception.message
+                })
+            }
+        })
     }
 }
