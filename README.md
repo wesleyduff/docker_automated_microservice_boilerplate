@@ -19,7 +19,7 @@ Key features
 - Deploy to AWS ECR 
 - Provide documentation to QA on how to run container
 
-**AUTOMATION!** \
+**AUTOMATION!** SCRIPTS \
 what is Automated...
 - `npm run local`
   - runs the automation process to build a local container on your system 
@@ -54,6 +54,8 @@ what is Automated...
   - you wil need
     - to setup your AWS CLI and have access to upload containers to AWS ECR
       - if you do not have this setup, you will need to create a few AWSPASS tickets
+- `npm run prod`
+  - this is TBD
 
 
     
