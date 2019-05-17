@@ -13,7 +13,7 @@ export default {
         docker_file_path: './Docker/docker_files/Dockerfile',
         image: {
             name: 'raven-microservices', //must be LOWERCASE
-            version: 'demo.v05162019.a.stage' // <name of microservice>.v<date>.<version>.stage
+            version: 'demo.v05172019.a.stage' // <name of microservice>.v<date>.<version>.stage
         },
         volumes: {}, //no volumes for stage this is for local only
         save_to_machine: true //Should we save the docker image to our machine or to minikube

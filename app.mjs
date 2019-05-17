@@ -50,7 +50,7 @@ function initApp(db) {
         info: {
             title: 'Node Swagger API - Boilerplate',
             version: '1.0.0',
-            description: 'Hello i am swagger . I am one step ahead of postman. My job is to provide API description',
+            description: 'RAVEN : 2.0 - DEMO ',
             host: 'localhost:3001'
         }
     };
