@@ -26,10 +26,10 @@ function buildDockerImage(){
      */
     shell.exec(`
         docker build \
-        --build-arg PATH_SOURCE_ON_HOST=$PWD${config.docker.volumes.path_source_on_host} \
         --build-arg NODE_ENV=${process.env.NODE_ENV} \
         --file ${config.docker.local_docker_file_path} \
         -t ${config.docker.image.name}:${config.docker.image.version} .
      `);
+    
     return 'done';
 }

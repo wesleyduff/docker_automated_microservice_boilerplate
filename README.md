@@ -3,6 +3,39 @@
 
 **NOTE** This automation is written for MAC. If you need this running for windows, please cut a ticket to add the additions
 
+#What the Boilerplate Does
+The boilerplate is a base for all your microservices that will run in a docker container. 
+The container can be deployed by any container orchestration software.
+
+Key features
+- Everything is configurable in the config file \
+ [ **start**, **local**, **stage** ]
+- run locally via node server (no container)
+- run locally via docker container 
+  - run container without a bindmount (for QA testers and sanity checks by developers) 
+  - run a container with a bindmount (for developers to make changes and see the changes in the container)
+- Build container for deployment to kubernetes 
+  - This will be different than the local container, because of how we connect to the mongo database
+- Deploy to AWS ECR 
+- Provide documentation to QA on how to run container
+
+**AUTOMATION!** \
+what is Automated...
+- `npm run local`
+  - runs the automation process to build a local container on your system 
+    - set name
+    - set version
+    - turn on or off bindmount
+    - choose to run on minikube or not TODO:// Needs a new story to perform this task : issue - consul
+    - when the script finishes
+        - The docker container will be running
+        - (MAC ONLY) your browser will open for you to the running docker container
+        - The logs for the docker container will be logged out
+        - Documentation for QA will run and you can copy the QA documentation and give to them when you give them the container to test
+          - this is found under **Documentation_for_QA/share_with_qa.txt**
+    
+
+
 # RUN COMMANDS
 * = requires software to be installed - read installation section
 - run locally in NODE SERVER - no container : `npm start`
