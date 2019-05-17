@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --no-cache",
     "prestart": "node --experimental-modules scripts/pre_start.mjs",
     "start": "NODE_ENV=start node --experimental-modules scripts/run_start.mjs",
     "poststart": "NODE_ENV=start node --inspect --experimental-modules app.mjs",
@@ -71,5 +71,8 @@
       "no-console": "off",
       "no-unused-vars": "warn"
     }
+  },
+  "jest": {
+    "verbose": true
   }
 }

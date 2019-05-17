@@ -20,7 +20,7 @@ fs.writeFile(`${path.resolve(path.dirname(''))}/Documentation_for_QA/share_with_
         3. Run these commands - make sure you are in the same folder where you downloaded the docker image tar
         
         docker load -i ./${config.docker.image.name}.tar
-        ß
+      
         docker run -p 3000:3000 -d --name ${config.docker.image.name} ${config.docker.image.name}:${config.docker.image.version}
         `
 

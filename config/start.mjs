@@ -10,7 +10,7 @@ export default {
     docker: {
         local_docker_file_path: './Docker/docker_files/Dockerfile_local',
         image: {
-            name: 'localexample', //must be LOWERCASE
+            name: 'localexample2Start', //must be LOWERCASE
             version: 'v1'
         },
         volumes: {

@@ -10,5 +10,5 @@ shell.exec(`
     docker logs ${config.docker.image.name}
     echo PWD...
     echo $PWD
-    export NODE_ENV=start&& node --experimental-modules $PWD/scripts/QA_documentation_scripts/qa_docks_script.mjs
+    export NODE_ENV=local&& node --experimental-modules $PWD/scripts/QA_documentation_scripts/qa_docks_script.mjs
 `)

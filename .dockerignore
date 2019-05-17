@@ -9,6 +9,10 @@ __tests__
 
 package-lock.json
 
+scripts/local/*
+scripts/misc/*
+scripts/stage/*
+
 *.tar
 
 # ide
