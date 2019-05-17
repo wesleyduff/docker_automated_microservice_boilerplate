@@ -107,6 +107,10 @@ Raven must control the creation of the docker file
 # QA Testers 
 Run these commands to test docker container : Automation pending : TODO//
 
+Should have this info from **Documentation_for_QA/share_with_qa.txt
+
+MORE DETAILS...
+
 1. pull down docker image .tar file
 2. cd into the folder where you saved your .tar file
 3. run this command
