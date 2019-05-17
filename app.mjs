@@ -58,7 +58,7 @@ function initApp(db) {
 // options for swagger jsdoc
     var options = {
         swaggerDefinition: swaggerDefinition, // swagger definition
-        apis: ['./api_routes.mjs'], // path where API specification are written
+        apis: ['./api_routes.mjs'] // path where API specification are written
     };
 
 // initialize swaggerJSDoc
