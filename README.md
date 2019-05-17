@@ -33,6 +33,29 @@ what is Automated...
         - The logs for the docker container will be logged out
         - Documentation for QA will run and you can copy the QA documentation and give to them when you give them the container to test
           - this is found under **Documentation_for_QA/share_with_qa.txt**
+- `npm run clean-docker`
+  - runs automation process to 
+    - list out all running containers
+    - stop the container
+    - delete the container
+    - delete the docker image (but not the cache)
+      - to delete everything run `docker styem prune -a` then choose "y" for yes
+- `npm run stage`
+  - this is the command you run after UAT is approved the container. 
+    - same code as before, but this container is deployable to our k8s cluster
+  - at the end, you are presented with the next steps to deploy the container to AWS ECR
+    - follow these steps
+    - run the command that it tells you to at the end
+      - `npm run stage-push`
+- `npm run stage-push`
+  - runs the command needed to push your docker container to AWS ECR
+    - the location has been set for charterdev
+    - we will need to setup the location for anything else than charterdev
+  - you wil need
+    - to setup your AWS CLI and have access to upload containers to AWS ECR
+      - if you do not have this setup, you will need to create a few AWSPASS tickets
+
+
     
 
 
