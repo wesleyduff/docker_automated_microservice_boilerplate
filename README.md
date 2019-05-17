@@ -127,3 +127,11 @@ You should see a log message of started on port 3000. Or something similar
 - should not see the running container any longer : `docker ps -a`
 - should not see the container not running either : `docker ps`
 - should not see the image any longer : `docker image ls` 
+
+
+#TODO
+1. VAULT
+2. PROD
+3. DEPLOY to minikube
+- need consul container deployed as well to mirror prod
+4. Testing example
