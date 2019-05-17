@@ -1,4 +1,6 @@
 import fetch from 'node-fetch';
+import mongodb from 'mongodb';
+const ObjectID = mongodb.ObjectID;
 
 export default  {
     get_example: () => {
@@ -85,5 +87,50 @@ export default  {
                 })
             }
         })
-    }
+    },
+    patch_example: (id, data) => {
+        return new Promise(async (resolve, reject) => {
+            try{
+                if(!id){
+                    reject({
+                        code: 400,
+                        exception: 'Bad request : Query value not provided'
+                    })
+                } else if(!data){
+                    reject({
+                        code: 400,
+                        exception: 'Bad request : New values not provided'
+                    })
+                } else if(id.constructor.name !== 'ObjetID' && typeof id === 'string'){
+                    id = ObjectID(id);
+                } else if(id.constructor.name !== 'ObjetID' && typeof id !== 'string'){
+                    reject({
+                        code: 400,
+                        exception: 'Bad request : ID provided is not of type ObjectID nor string'
+                    })
+                } else if(!Object.keys(t).length){
+                    reject({
+                        code: 400,
+                        exception: 'Bad request : Data object was empty. Nothing to change'
+                    })
+                }
+                const   replacement = data,
+                        querySelector = {_id: id},
+                        newValues = {$set : data};
+
+                const result = await global.DAO['mycollection'].update(querySelector, newValues);
+
+                resolve({
+                    code: 200,
+                    message: 'Document has been updated',
+                    result
+                })
+            } catch(exception) {
+                reject({
+                    code: 500,
+                    exception: exception.message
+                })
+            }
+        })
+    },
 }

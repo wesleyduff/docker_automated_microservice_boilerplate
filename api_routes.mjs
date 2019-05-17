@@ -18,6 +18,17 @@ Defininitions (schemas) for object types
  *          ok:
  *              type: integer
  *              example: 1
+ *  DbModifiedSuccess:
+ *      properties:
+ *          n:
+ *              type: integer
+ *              example: 1
+ *          nModified:
+ *              type: integer
+ *              example: 1
+ *          ok:
+ *              type: integer
+ *              example: 1
  *  User:
  *      properties:
  *          name:
@@ -58,6 +69,16 @@ Defininitions (schemas) for object types
  *              example: 'Request received from databse'
  *          result:
  *              $ref: '#/definitions/DbChangeSuccess'
+ *  200Update:
+ *      properties:
+ *          code:
+ *              type: integer
+ *              example: 200
+ *          message:
+ *              type: string
+ *              example: 'Document has been updated'
+ *          result:
+ *              $ref: '#/definitions/DbModifiedSuccess'
  *  500:
  *      properties:
  *          code:
@@ -165,7 +186,6 @@ export default {
          *              $ref: '#/definitions/500'
          *
          */
-        //todo:// allow swagger to add data in swagger doc
         app.put('/put_example/:name', async (req, res) => {
             try {
                 const nameParam = req.params.name;
@@ -212,6 +232,48 @@ export default {
                 res.send(requestDelete);
             }
             catch(exception){
+                res.setHeader('Content-Type', 'application/json');
+                res.send({error: exception});
+            }
+        })
+        /**
+         * @swagger
+         * /patch_example/{id}:
+         *   patch:
+         *      parameters:
+         *          - in: path
+         *            name: id
+         *            required: true
+         *            schema:
+         *              type: string
+         *          - in: body
+         *            name: Update
+         *            schema:
+         *              type: object
+         *              example: {"newValue": "Hello world!"}
+         *      description: Finds the document with the correct name and REPLACES only the items you specify or ADDS the items to the document if they do not exist
+         *      responses:
+         *          200:
+         *            description: Updates an existing document in the database and returns the result and a message
+         *            schema:
+         *              $ref: '#/definitions/200Update'
+         *          400:
+         *            description: Parameters provided are not correct
+         *            schema:
+         *              $ref: '#/definitions/400'
+         *          500:
+         *            description: Something went wrong
+         *            schema:
+         *              $ref: '#/definitions/500'
+         *
+         */
+        app.patch('/patch_example/:id', async (req, res) => {
+            try {
+                const id = req.params.id;
+                const requestPatch = await BasicsApi.patch_example(id, req.body);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(requestPatch);
+            } catch(exception){
                 res.setHeader('Content-Type', 'application/json');
                 res.send({error: exception});
             }
