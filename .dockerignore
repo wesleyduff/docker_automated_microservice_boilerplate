@@ -13,6 +13,9 @@ scripts/local/*
 scripts/misc/*
 scripts/stage/*
 
+coverage/*
+
+
 *.tar
 
 # ide
