@@ -172,10 +172,10 @@ export default {
          *              $ref: '#/definitions/User'
          *      description: Finds the document with the correct name and REPLACES the whole document with the body
          *      responses:
-         *          201:
+         *          200:
          *            description: Saves a new document to the database and returns the result and a message
          *            schema:
-         *              $ref: '#/definitions/201'
+         *              $ref: '#/definitions/200'
          *          400:
          *            description: Parameters provided are not correct
          *            schema:
@@ -211,7 +211,7 @@ export default {
          *   description: Delete a document by ID
          *   responses:
          *     200:
-         *       description: Successfully deleted document from database
+         *       description: Document was deleted
          *       schema:
          *         $ref: '#/definitions/200'
          *     400:

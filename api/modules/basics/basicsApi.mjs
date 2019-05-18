@@ -19,7 +19,7 @@ export default  {
                     console.log('---- rejecting - reason', exception);
                     reject({
                         code: 502,
-                        exception: exception.message
+                        message: exception.message
                     })
                 })
         })
@@ -27,6 +27,12 @@ export default  {
     post_example: (body) => {
         return new Promise(async (resolve, reject) => {
             try{
+                if(!body){
+                    reject({
+                        code: 400,
+                        message: 'Bad request : no body provided'
+                    })
+                }
                 const result = await global.DAO['mycollection'].insert(body);
                 resolve({
                     code: 201,
@@ -43,6 +49,12 @@ export default  {
     },
     put_example: (searchValue, data) => {
         return new Promise(async (resolve, reject) => {
+            if(!searchValue || !data){
+                reject({
+                    code: 400,
+                    message: 'Parameters were not provided as exected. Wrong SYNTAX'
+                })
+            }
             try{
                 const   replacement = data;
 
@@ -59,7 +71,7 @@ export default  {
             } catch(exception) {
                 reject({
                     code: 500,
-                    exception: exception.message
+                    message: exception.message
                 })
             }
         })
@@ -69,7 +81,7 @@ export default  {
             if(!id){
                 reject({
                     code: 400,
-                    exception: 'Bad request : id not provided'
+                    message: 'Bad request : id not provided'
                 })
             }
             try{
@@ -83,35 +95,35 @@ export default  {
             } catch(exception) {
                 reject({
                     code: 500,
-                    exception: exception.message
+                    message: exception.message
                 })
             }
         })
     },
-    patch_example: (id, data) => {
+    patch_example: (id, data = {}) => {
         return new Promise(async (resolve, reject) => {
             try{
                 if(!id){
                     reject({
                         code: 400,
-                        exception: 'Bad request : Query value not provided'
+                        message: 'Bad request : id not provided'
+                    })
+                } else if(id.constructor.name !== 'ObjetID' && typeof id === 'string'){
+                    id = ObjectID(id);
+                } else if(id.constructor.name !== 'ObjetID' && typeof id !== 'string') {
+                    reject({
+                        code: 400,
+                        message: 'Bad request : ID provided is not of type ObjectID nor string'
                     })
                 } else if(!data){
                     reject({
                         code: 400,
-                        exception: 'Bad request : New values not provided'
+                        message: 'Bad request : New values not provided'
                     })
-                } else if(id.constructor.name !== 'ObjetID' && typeof id === 'string'){
-                    id = ObjectID(id);
-                } else if(id.constructor.name !== 'ObjetID' && typeof id !== 'string'){
+                } else if(Object.keys(data).length === 0){
                     reject({
                         code: 400,
-                        exception: 'Bad request : ID provided is not of type ObjectID nor string'
-                    })
-                } else if(!Object.keys(t).length){
-                    reject({
-                        code: 400,
-                        exception: 'Bad request : Data object was empty. Nothing to change'
+                        message: 'Bad request : Data object was empty. Nothing to change'
                     })
                 }
                 const   replacement = data,
@@ -128,7 +140,7 @@ export default  {
             } catch(exception) {
                 reject({
                     code: 500,
-                    exception: exception.message
+                    message: exception.message
                 })
             }
         })

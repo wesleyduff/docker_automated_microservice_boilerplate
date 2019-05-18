@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --no-cache",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage",
+    "open:coverage": "npm run test:coverage && open ./coverage/lcov-report/index.html",
+    "security-check": "nsp check",
     "prestart": "node --experimental-modules scripts/pre_start.mjs",
     "start": "NODE_ENV=start node --experimental-modules scripts/run_start.mjs",
     "poststart": "NODE_ENV=start node --inspect --experimental-modules app.mjs",
@@ -35,14 +39,19 @@
     "node-fetch": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "babel-eslint": "10.0.1",
+    "babel-jest": "^24.8.0",
     "chalk": "^2.4.2",
     "eslint": "5.12.1",
     "eslint-loader": "2.1.1",
     "eslint-plugin-import": "2.15.0",
+    "jest": "^24.7.1",
+    "nsp": "^3.2.1",
+    "open": "^6.3.0",
     "rimraf": "2.6.3",
-    "shelljs": "^0.8.3",
-    "jest": "^24.7.1"
+    "shelljs": "^0.8.3"
   },
   "engines": {
     "node": ">=8"
@@ -73,6 +82,22 @@
     }
   },
   "jest": {
-    "verbose": true
+    "verbose": true,
+    "transform": {
+      "^.+\\.mjs?$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx",
+      "node",
+      "mjs"
+    ],
+    "moduleNameMapper": {
+      "api": "<rootDir>/api"
+    },
+    "collectCoverageFrom": [
+      "api/**/*.{js,jsx,mjs}"
+    ]
   }
 }

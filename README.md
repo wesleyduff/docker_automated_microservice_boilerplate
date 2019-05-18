@@ -18,6 +18,10 @@ Key features
   - This will be different than the local container, because of how we connect to the mongo database
 - Deploy to AWS ECR 
 - Provide documentation to QA on how to run container
+- Testing usinig JEST
+- Code Coverage 
+  - in terminal
+  - available as website (HTML)
 
 **AUTOMATION!** SCRIPTS \
 what is Automated...
@@ -56,6 +60,19 @@ what is Automated...
       - if you do not have this setup, you will need to create a few AWSPASS tickets
 - `npm run prod`
   - this is TBD
+  
+**TESTING**
+
+- `npm run test`
+  - run tests for all tests
+- `npm run test:coverage`
+  - run tests for all and run coverage reporting
+- `npm run open:coverage`
+  - open the coverage reporting in your browser
+- `npm run test:watch`
+  - keep jest watching for test file changes
+- `npm run security-check`
+  - run nsp npm package manager checker. Security check.
 
 
     
