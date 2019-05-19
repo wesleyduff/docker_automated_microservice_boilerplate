@@ -100,6 +100,7 @@ Defininitions (schemas) for object types
 
 export default {
     setup : function(app) {
+        global.logger.info('Setting up routes')
         /**
          * @swagger
          * /ingest:
