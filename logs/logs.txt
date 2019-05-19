@@ -1,0 +1,1 @@
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}

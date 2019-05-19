@@ -7,12 +7,15 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import util from 'util';
 import GetDAO from 'raven-dao';
 import MongoConfig from 'raven-utils';
-import config from './config'
+import config from './config';
+import logger from './lib/logger'
 
 const mongoConfig = MongoConfig.mongo
 const app = express();
 const port = 3000;
 
+//initiate logger : set global logger
+logger();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -29,6 +32,11 @@ mongoConfig.init(config, function (err, tempDB, tempSettings) {
     }
 
     const db = tempDB;
+
+    global.logger.info('Mongo Connection: Connected!',{
+        caller: "MongoConfig",
+        message: "Setting up connection to mongodb"
+    })
 
     return initApp(db);
 })

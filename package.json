@@ -28,15 +28,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "api": "./api",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongodb": "^3.2.3",
-    "raven-utils": "git+ssh://git@stash.dev-charter.net:7999/snews/raven-utils.git#master",
+    "node-fetch": "^2.3.0",
     "raven-dao": "git+ssh://git@stash.dev-charter.net:7999/snews/raven-dao.git#npm-erize",
-    "api": "./api",
+    "raven-utils": "git+ssh://git@stash.dev-charter.net:7999/snews/raven-utils.git#master",
     "swagger-jsdoc": "^3.2.7",
     "swagger-ui-express": "^4.0.2",
-    "node-fetch": "^2.3.0"
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
