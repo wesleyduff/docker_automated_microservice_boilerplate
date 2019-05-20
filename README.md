@@ -124,7 +124,7 @@ what is Automated...
 ### INFO
 Raven must control the creation of the docker file
 - npm install must take place before the docker container is created
-  - this is due to best practices and securieis
+  - this is due to best practices and securities
     - We cannot add ssh keys to docker images / they cannot be removed once added fully
     
     
