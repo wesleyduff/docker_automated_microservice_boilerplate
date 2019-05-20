@@ -32,25 +32,49 @@ ssh keys to docker image.....................................................
 `)))
 
 shell.exec(`
+    echo "----------------Running test"
+    
     if npm test; then
-        echo "
+       echo "
 -----------------------------
-BUILDING DOCKER CONTAINER : ALL TESTS PAST
+BUILDING DOCKER CONTAINER : ALL TESTS PASS
 -----------------------------
 "
-       npm i
-       docker build \
-       --build-arg NODE_ENV=${process.env.NODE_ENV} \
-       --file ${config.docker.docker_file_path} \
-       -t ${config.docker.image.name}:${config.docker.image.version} .
-       
-       export TEST=true
+      
+        npm i
+        docker build \
+        --build-arg NODE_ENV=${process.env.NODE_ENV} \
+        --file ${config.docker.docker_file_path} \
+        -t ${config.docker.image.name}:${config.docker.image.version} .
+        
+        ${process.env.TEST=true}
+        export TEST=true
+        
+        echo "
+        ==================== steps
+        Uploading docker image to rave-microservices repo on charter dev
+        ====================
+        IMPORTANT ***************************
+        Next you need to perform the steps to upload your docker container to raven-microservices storage on ECR AWS (or any new location after 05142019 that is currently unknown)
+        STEPS :
+              
+        1. export AWS_PROFILE=charterdev
+        2. aws ecr get-login --no-include-email --region us-west-2
+        3. copy the response from the above response
+        4. run npm command
+        npm run stage-push
+        ====================
+        "
+     
     else 
-       echo "
+        echo "
 -----------------------------
 STOPPING : TESTS FAILED - fix tests and rerun script
 -----------------------------
 "
-       export TEST=false;
+        export TEST=false
     fi
+    
+    
+  
 `);

@@ -4,7 +4,7 @@ import config from '../../../config';
 
 
 console.log(chalk.red(`
-====================
+==================== PUSH
 `));
 
 console.log(chalk.yellow(`
@@ -12,7 +12,9 @@ console.log(chalk.yellow(`
 Uploading docker image to rave-microservices repo on charter dev
 
 `))
-
+console.log(chalk.red(`
+====================
+`));
 
 shell.exec(`
     docker tag ${config.docker.image.name}:${config.docker.image.version} ${config.AWS.ecr}/${config.docker.image.name}:${config.docker.image.version}

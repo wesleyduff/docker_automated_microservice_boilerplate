@@ -115,7 +115,8 @@ export default  {
                         code: 400,
                         message: 'Bad request : ID provided is not of type ObjectID nor string'
                     })
-                } else if(!data){
+                }
+                if(!data){
                     reject({
                         code: 400,
                         message: 'Bad request : New values not provided'
