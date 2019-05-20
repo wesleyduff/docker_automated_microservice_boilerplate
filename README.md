@@ -156,13 +156,13 @@ MORE DETAILS...
 
 You should see a log message of started on port 3000. Or something similar
 
-## cleanup after your done
+## cleanup after your done - now part of script `npm clean-docker`
 1. Run these commands
 - `docker stop <name>`
 - `docker rm <name>`
 - `docker rmi <docker image name>:<docker image ver>`
 
-## double check your cleaned up
+## double check your cleaned up - now part of script `npm clean-docker`
 1. Run these commands
 - should not see the running container any longer : `docker ps -a`
 - should not see the container not running either : `docker ps`
