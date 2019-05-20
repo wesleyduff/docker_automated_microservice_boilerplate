@@ -22,6 +22,15 @@ Key features
 - Code Coverage 
   - in terminal
   - available as website (HTML)
+  
+  
+### INSTALL REQUIREMENTS
+Docker must be installed on your system : [install docker (mac)](https://docs.docker.com/docker-for-mac/install/)
+
+Node JS - you should already have this : [install node js](https://nodejs.org/en/download/)
+
+Run code as in production with "minikube" : **NOTE** use virtual box setup: [install minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+
 
 **AUTOMATION!** SCRIPTS \
 **note** scripts will NOT run all the way through if there are failing tests \
@@ -96,14 +105,7 @@ what is Automated...
 - restart container
   - get container name, if you do not know it : `docker ps -a`
   - restart container : `docker restart <name>`
-
-### INSTALL REQUIREMENTS
-Docker must be installed on your system : [install docker (mac)](https://docs.docker.com/docker-for-mac/install/)
-
-Node JS - you should already have this : [install node js](https://nodejs.org/en/download/)
-
-Run code as in production with "minikube" : **NOTE** use virtual box setup: [install minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
-
+  
 # DOCKER COMMANDS
 - run : `docker run -p 3000:3000 --name <name> <docker image name>:<docker image ver>`
 - ssh : `docker exec -it <name> /bin/bash`
