@@ -26,6 +26,11 @@ Key features
 **AUTOMATION!** SCRIPTS \
 **note** scripts will NOT run all the way through if there are failing tests \
 what is Automated...
+- `npm start`
+    - runs the automation process to build and run locally via node server
+      - uses the config to build necessary items and run tests.
+      - if tests fail : the node server will not start
+      - if swagger docs are malformed : the node server will not start
 - `npm run local`
   - runs the automation process to build a local container on your system 
     - set name
