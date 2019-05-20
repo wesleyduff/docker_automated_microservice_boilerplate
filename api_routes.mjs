@@ -29,6 +29,17 @@ Defininitions (schemas) for object types
  *          ok:
  *              type: integer
  *              example: 1
+ *  details:
+ *      properties:
+ *          errorCode:
+ *              type: string
+ *              example: 'RMS<number>'
+ *          reason:
+ *              type: string
+ *              example: 'Missing mandatory field'
+ *          message:
+ *              type: string
+ *              example: 'Some meaningful error message'
  *  User:
  *      properties:
  *          name:
@@ -69,6 +80,13 @@ Defininitions (schemas) for object types
  *              example: 'Request received from databse'
  *          result:
  *              $ref: '#/definitions/DbChangeSuccess'
+ *  204:
+ *      properties:
+ *          status:
+ *              type: integer
+ *              example: 204
+ *          details:
+ *              $ref: '#/definitions/details'
  *  200Update:
  *      properties:
  *          code:
@@ -79,22 +97,34 @@ Defininitions (schemas) for object types
  *              example: 'Document has been updated'
  *          result:
  *              $ref: '#/definitions/DbModifiedSuccess'
- *  500:
- *      properties:
- *          code:
- *              type: integer
- *              example: 500
- *          message:
- *              type: string
- *              example: 'Server Error'
  *  400:
  *      properties:
- *          code:
+ *          status:
  *              type: integer
  *              example: 400
- *          message:
- *              type: string
- *              example: 'Parameters were not provided as exected. Wrong SYNTAX'
+ *          details:
+ *              $ref: '#/definitions/details'
+ *  404:
+ *      properties:
+ *          status:
+ *              type: integer
+ *              example: 404
+ *          details:
+ *              $ref: '#/definitions/details'
+ *  500:
+ *      properties:
+ *          status:
+ *              type: integer
+ *              example: 500
+ *          details:
+ *              $ref: '#/definitions/details'
+ *  504:
+ *      properties:
+ *          status:
+ *              type: integer
+ *              example: 504
+ *          details:
+ *              $ref: '#/definitions/details'
  */
 
 
@@ -111,6 +141,18 @@ export default {
          *         description: Returns ingest data
          *         schema:
          *           $ref: '#/definitions/200'
+         *       204:
+         *          description: There is no content to send for this request
+         *          schema:
+         *              $ref: '#/definitions/204'
+         *       404:
+         *         description: Searching by primary key | not found
+         *         schema:
+         *              $ref: '#/definitions/404'
+         *       504:
+         *         description: Call outside of application or application itself has timedout
+         *         schema:
+         *            $ref: '#/definitions/504'
          */
         app.get('/ingest', async (req, res) => {
             try{
@@ -141,10 +183,18 @@ export default {
          *         description: Parameters provided are not correct
          *         schema:
          *           $ref: '#/definitions/400'
+         *       404:
+         *         description: Searching by primary key | not found
+         *         schema:
+         *              $ref: '#/definitions/404'
          *       500:
          *         description: Something went wrong
          *         schema:
          *           $ref: '#/definitions/500'
+         *       504:
+         *         description: Call outside of application or application itself has timedout
+         *         schema:
+         *            $ref: '#/definitions/504'
          *
          */
         app.post('/post_example', async (req, res) => {
@@ -177,14 +227,26 @@ export default {
          *            description: Saves a new document to the database and returns the result and a message
          *            schema:
          *              $ref: '#/definitions/200'
+         *          204:
+         *            description: There is no content to send for this request
+         *            schema:
+         *              $ref: '#/definitions/204'
          *          400:
          *            description: Parameters provided are not correct
          *            schema:
          *              $ref: '#/definitions/400'
+         *          404:
+         *            description: Searching by primary key | not found
+         *            schema:
+         *              $ref: '#/definitions/404'
          *          500:
          *            description: Something went wrong
          *            schema:
-         *              $ref: '#/definitions/500'
+         *              $ref: '#/definitions/details'
+         *          504:
+         *            description: Call outside of application or application itself has timedout
+         *            schema:
+         *              $ref: '#/definitions/504'
          *
          */
         app.put('/put_example/:name', async (req, res) => {
@@ -215,14 +277,26 @@ export default {
          *       description: Document was deleted
          *       schema:
          *         $ref: '#/definitions/200'
+         *     204:
+         *       description: There is no content to send for this request
+         *       schema:
+         *         $ref: '#/definitions/204'
          *     400:
          *       description: Parameters provided are not correct
          *       schema:
          *         $ref: '#/definitions/400'
+         *     404:
+         *       description: Searching by primary key | not found
+         *       schema:
+         *         $ref: '#/definitions/404'
          *     500:
          *       description: Something went wrong
          *       schema:
          *         $ref: '#/definitions/500'
+         *     504:
+         *         description: Call outside of application or application itself has timedout
+         *         schema:
+         *            $ref: '#/definitions/504'
          *
          */
         app.delete('/delete_example/:id', async(req, res) => {
@@ -258,14 +332,26 @@ export default {
          *            description: Updates an existing document in the database and returns the result and a message
          *            schema:
          *              $ref: '#/definitions/200Update'
+         *          204:
+         *            description: There is no content to send for this request
+         *            schema:
+         *              $ref: '#/definitions/204'
          *          400:
          *            description: Parameters provided are not correct
          *            schema:
          *              $ref: '#/definitions/400'
+         *          404:
+         *            description: Searching by primary key | not found
+         *            schema:
+         *              $ref: '#/definitions/404'
          *          500:
          *            description: Something went wrong
          *            schema:
          *              $ref: '#/definitions/500'
+         *          504:
+         *            description: Call outside of application or application itself has timedout
+         *            schema:
+         *               $ref: '#/definitions/504'
          *
          */
         app.patch('/patch_example/:id', async (req, res) => {
@@ -278,6 +364,22 @@ export default {
                 res.setHeader('Content-Type', 'application/json');
                 res.send({error: exception});
             }
+        })
+        /**
+         * Must go at the end : Catch any routes that are not available
+         *
+         */
+        app.get('*', (req, res) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.send({
+                "code": 501,
+                "details":[
+                    {
+                        "errorCode":"RMS0001",
+                        "message": "This route is not found. Did you mistype? : API endpoint does not exist"
+                    }
+                ]
+            });
         })
 
 

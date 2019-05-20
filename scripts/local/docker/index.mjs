@@ -14,7 +14,7 @@ export default (config) => {
         npm i
         docker build \\
         --build-arg NODE_ENV=${process.env.NODE_ENV} \\
-        --file ${config.docker.local_docker_file_path} \\
+        --file ${config.docker.docker_file_path} \\
         -t ${config.docker.image.name}:${config.docker.image.version} .
         export TEST=true
         

@@ -7,7 +7,7 @@ shell.exec(`
       export NODE_TLS_REJECT_UNAUTHORIZED=0
       echo "
 -----------------------------
-STARTING NODE SERVER : ALL TESTS PAST
+STARTING NODE SERVER : ALL TESTS PASS
 -----------------------------
 "
       node --inspect --experimental-modules app.mjs

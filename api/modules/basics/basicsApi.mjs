@@ -29,8 +29,12 @@ export default  {
             try{
                 if(!body){
                     reject({
-                        code: 400,
-                        message: 'Bad request : no body provided'
+                        status: 400,
+                        details: {
+                            errorCode: 'RMS3001',
+                            reason: 'No body was found',
+                            message: 'Please provide the correct amount of arguments to the method.'
+                        }
                     })
                 }
                 const result = await global.DAO['mycollection'].insert(body);
@@ -51,8 +55,12 @@ export default  {
         return new Promise(async (resolve, reject) => {
             if(!searchValue || !data){
                 reject({
-                    code: 400,
-                    message: 'Parameters were not provided as exected. Wrong SYNTAX'
+                    status: 400,
+                    details: {
+                        errorCode: 'RMS2001',
+                        reason: 'One or more arguments were not provided',
+                        message: 'Please provide the correct amount of arguments to the method.'
+                    }
                 })
             }
             try{
@@ -62,6 +70,19 @@ export default  {
                 const filter = {name: searchValue}
 
                 const result = await global.DAO['mycollection'].replaceOne(filter, replacement, {upsert: true});
+
+                if(result.ok && !result.n){
+                    //query performed but nothing was updated
+                    reject({
+                        status: 404,
+                        details : {
+                            errorCode: 'RMS2002',
+                            reason: 'The search value did not yeild any results to update',
+                            message: 'Please try a different search value. The search value provided did not yeild any results.'
+                        },
+                        result
+                    })
+                }
 
                 resolve({
                     code: 200,
@@ -79,9 +100,14 @@ export default  {
     delete_example: (id)=> {
         return new Promise(async (resolve, reject) => {
             if(!id){
+
                 reject({
-                    code: 400,
-                    message: 'Bad request : id not provided'
+                    status: 400,
+                    details: {
+                        errorCode: 'RMS4001',
+                        reason: 'Id was found',
+                        message: 'Please provide the correct amount of arguments to the method.'
+                    }
                 })
             }
             try{
@@ -105,26 +131,43 @@ export default  {
             try{
                 if(!id){
                     reject({
-                        code: 400,
-                        message: 'Bad request : id not provided'
+                        status: 400,
+                        details: {
+                            errorCode: 'RMS2001',
+                            reason: 'The ID argument was not provided',
+                            message: 'Please provide an ID as an argument : string || ObjectID'
+                        }
                     })
                 } else if(id.constructor.name !== 'ObjetID' && typeof id === 'string'){
                     id = ObjectID(id);
                 } else if(id.constructor.name !== 'ObjetID' && typeof id !== 'string') {
                     reject({
-                        code: 400,
-                        message: 'Bad request : ID provided is not of type ObjectID nor string'
+                        status: 400,
+                        details: {
+                            errorCode: 'RMS2002',
+                            reason: 'The ID argument was not of type STRING or OBJECTID',
+                            message: 'Bad request : ID provided is not of type ObjectID nor string'
+                        }
                     })
                 }
                 if(!data){
                     reject({
-                        code: 400,
-                        message: 'Bad request : New values not provided'
+                        status: 400,
+                        details: {
+                            errorCode: 'RMS2003',
+                            reason: 'The data argument was not provided',
+                            message: 'Please provide a data object as an argument'
+                        }
                     })
                 } else if(Object.keys(data).length === 0){
                     reject({
-                        code: 400,
-                        message: 'Bad request : Data object was empty. Nothing to change'
+                        status: 400,
+                        details: {
+                            errorCode: 'RMS2004',
+                            reason: 'The data argument was provided but was an empty object',
+                            message: 'Please provide a data object as an argument with one or more key value pairs'
+                        }
+
                     })
                 }
                 const   replacement = data,

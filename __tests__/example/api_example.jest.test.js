@@ -57,8 +57,12 @@ describe('Testing our REST examples : ', () => {
         it('Should get a failure response from not having a parameter of body', () => {
             expect.assertions(1);
             const response = {
-                code: 400,
-                message: 'Bad request : no body provided'
+                status: 400,
+                details: {
+                    errorCode: 'RMS3001',
+                    reason: 'No body was found',
+                    message: 'Please provide the correct amount of arguments to the method.'
+                }
             }
 
             return BasicsApi.post_example()
@@ -109,8 +113,12 @@ describe('Testing our REST examples : ', () => {
         it('Should get a failure response from not having a parameter of searchValue', () => {
             expect.assertions(1);
             const response = {
-                code: 400,
-                message: 'Parameters were not provided as exected. Wrong SYNTAX'
+                status: 400,
+                details: {
+                    errorCode: 'RMS2001',
+                    reason: 'One or more arguments were not provided',
+                    message: 'Please provide the correct amount of arguments to the method.'
+                }
             }
 
             return BasicsApi.put_example()
@@ -122,8 +130,12 @@ describe('Testing our REST examples : ', () => {
         it('Should get a failure response from not having a parameter of data', () => {
             expect.assertions(1);
             const response = {
-                code: 400,
-                message: 'Parameters were not provided as exected. Wrong SYNTAX'
+                status: 400,
+                details: {
+                    errorCode: 'RMS2001',
+                    reason: 'One or more arguments were not provided',
+                    message: 'Please provide the correct amount of arguments to the method.'
+                }
             }
 
             return BasicsApi.put_example('serachValue')
@@ -139,6 +151,30 @@ describe('Testing our REST examples : ', () => {
                 "message": "Mock implementation failure"
             }
             global.DAO.mycollection.replaceOne.mockImplementationOnce(() => { throw new Error('Mock implementation failure')});
+            return BasicsApi.put_example('searchValue', {data:'value'})
+                .catch(error => {
+                    expect(error).toEqual(response);
+                })
+        })
+
+        it('Should get a failure response when the searchable value was not found', () => {
+            expect.assertions(1);
+            const response = {
+                status: 404,
+                details : {
+                    errorCode: 'RMS2002',
+                    reason: 'The search value did not yeild any results to update',
+                    message: 'Please try a different search value. The search value provided did not yeild any results.'
+                },
+                result : {
+                    n: 0,
+                    ok: 1
+                }
+            }
+            global.DAO.mycollection.replaceOne.mockImplementationOnce(() => Promise.resolve({
+                n:0,
+                ok:1
+            }))
             return BasicsApi.put_example('searchValue', {data:'value'})
                 .catch(error => {
                     expect(error).toEqual(response);
@@ -174,8 +210,12 @@ describe('Testing our REST examples : ', () => {
         it('Should get a failure response from not having a parameter of id', () => {
             expect.assertions(1);
             const response = {
-                code: 400,
-                message: 'Bad request : id not provided'
+                status: 400,
+                details: {
+                    errorCode: 'RMS2001',
+                    reason: 'The ID argument was not provided',
+                    message: 'Please provide an ID as an argument : string || ObjectID'
+                }
             }
 
             return BasicsApi.patch_example()
@@ -187,11 +227,33 @@ describe('Testing our REST examples : ', () => {
         it('Should get a failure response from not having an id of type ObjectID or string', () => {
             expect.assertions(1);
             const response = {
-                code: 400,
-                message: 'Bad request : ID provided is not of type ObjectID nor string'
+                status: 400,
+                details: {
+                    errorCode: 'RMS2002',
+                    reason: 'The ID argument was not of type STRING or OBJECTID',
+                    message: 'Bad request : ID provided is not of type ObjectID nor string'
+                }
             }
 
             return BasicsApi.patch_example([1])
+                .catch(error => {
+                    expect(error).toEqual(response);
+                })
+        })
+
+        it('Should get a failure response when data is an empty object', () => {
+            expect.assertions(1);
+            const response = {
+                status: 400,
+                details: {
+                    errorCode: 'RMS2004',
+                    reason: 'The data argument was provided but was an empty object',
+                    message: 'Please provide a data object as an argument with one or more key value pairs'
+                }
+
+            }
+
+            return BasicsApi.patch_example('5cc1ec76bea30824ed9618e2', {})
                 .catch(error => {
                     expect(error).toEqual(response);
                 })
@@ -205,19 +267,6 @@ describe('Testing our REST examples : ', () => {
             }
 
             return BasicsApi.patch_example('1234' )
-                .catch(error => {
-                    expect(error).toEqual(response);
-                })
-        })
-
-        it('Should get a failure response when data is an empty object', () => {
-            expect.assertions(1);
-            const response = {
-                code: 400,
-                message: 'Bad request : Data object was empty. Nothing to change'
-            }
-
-            return BasicsApi.patch_example('5cc1ec76bea30824ed9618e2', {})
                 .catch(error => {
                     expect(error).toEqual(response);
                 })
@@ -267,8 +316,12 @@ describe('Testing our REST examples : ', () => {
         it('Should get a failure response from not having a parameter of searchValue', () => {
             expect.assertions(1);
             const response = {
-                code: 400,
-                message: 'Bad request : id not provided'
+                status: 400,
+                details: {
+                    errorCode: 'RMS4001',
+                    reason: 'Id was found',
+                    message: 'Please provide the correct amount of arguments to the method.'
+                }
             }
 
             return BasicsApi.delete_example()

@@ -48,11 +48,6 @@ function initApp(db) {
     */
     global.DAO = GetDAO(db);
 
-    /* ---
-    Set Routes
-     */
-    routes.setup(app);
-
     // swagger definition
     var swaggerDefinition = {
         info: {
@@ -73,7 +68,12 @@ function initApp(db) {
     var swaggerSpec = swaggerJSDoc(options);
 
 
-    app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+    /* ---
+    Set Routes
+     */
+    routes.setup(app);
 
 // route for swagger.json
     app.get('/swagger.json', function (req, res) {

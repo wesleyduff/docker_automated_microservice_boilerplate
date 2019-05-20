@@ -4,3 +4,65 @@
 {"level":"info","message":"Setting up routes"}
 {"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
 {"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}
+{"caller":"MongoConfig","message":"Mongo Connection: Connected!Setting up connection to mongodb","level":"info"}
+{"level":"info","message":"Setting up routes"}

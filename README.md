@@ -160,6 +160,36 @@ You should see a log message of started on port 3000. Or something similar
 - should not see the image any longer : `docker image ls` 
 
 
+### Common HTTP Status Codes
+Success
+
+#### 200
+- Only return a 2xx response if the operation was successful.
+
+200 OK – Payload is expected \
+201 Created – Use for POST responses \
+202 No Content – Use instead of 200 OK if no payload is returned \
+Client Error
+
+#### 400 
+- Do not return a 4xx error if you are not sure there is a problem with the request.
+
+400 Bad Request – Service detects a client error \
+400 Forbidden – Request is not authorized \ 
+Bad Credentials \
+Good Credentials with insufficient access privilege \
+404 Not Found – Use it if a resource was searched with its ID. 403 can also be used in disclosure is deemed a security risk. \
+405 Method Not Allowed – Example: POST to a read-only resource \
+410 Gone – Permanent 404 \
+Server Error \
+
+#### 500
+500 Internal Server Error – Do not use if caused by a bad request or the problem is upstream \
+501 Not Implemented – Use this to let users know that the functionality is not supported (yet) \
+502 Bad Gateway – Use instead of a 500 if the problem is an invalid upstream response \
+503 Unavailable – Service (temporarily) cannot fulfill request. Could be caused by a loss of connection to a database or other service. \
+504 Gateway Timeout – Use instead of a 500 if the problem is an invalid upstream timeout \
+
 #TODO
 1. VAULT
 2. PROD
