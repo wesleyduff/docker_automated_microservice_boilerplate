@@ -210,7 +210,7 @@ describe('Testing our REST examples : ', () => {
                 })
         })
 
-        xit('Should get a failure response when data is an empty object', () => {
+        it('Should get a failure response when data is an empty object', () => {
             expect.assertions(1);
             const response = {
                 code: 400,

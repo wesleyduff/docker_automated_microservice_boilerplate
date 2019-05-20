@@ -24,10 +24,11 @@ The docker image will be built on your local system under "docker-machine env -u
 buildDockerImage();
 
 
-
-console.log(chalk.yellow(`
+if(process.env.TEST){
+    console.log(chalk.yellow(`
 ============= Starting Docker container and opening browser ==============
 `));
+}
 
 
 
@@ -37,11 +38,13 @@ if(config.docker.bindmount){
      * Windows users will have to open it themselves
      */
     shell.exec(`
-        docker run -p 3000:3000 -d --name ${config.docker.image.name} -v $PWD:/data/apps/raven-web ${config.docker.image.name}:${config.docker.image.version}
-        echo 'sleeping for 5 - waiting to open browser'
-        sleep 5
-        echo 'done sleeping'
-        open http://localhost:3000
+        if TEST; then
+          docker run -p 3000:3000 -d --name ${config.docker.image.name} -v $PWD:/data/apps/raven-web ${config.docker.image.name}:${config.docker.image.version}
+          echo 'sleeping for 5 - waiting to open browser'
+          sleep 5
+          echo 'done sleeping'
+          open http://localhost:3000
+        fi
         
     `)
 } else {
@@ -50,11 +53,13 @@ if(config.docker.bindmount){
      * Windows users will have to open it themselves
      */
     shell.exec(`
-        docker run -p 3000:3000 -d --name ${config.docker.image.name} ${config.docker.image.name}:${config.docker.image.version}
-        echo 'sleeping for 5 -waiting to open browser'
-        sleep 5
-        echo 'done sleeping'
-        open http://localhost:3000
+        if TEST; then
+          docker run -p 3000:3000 -d --name ${config.docker.image.name} ${config.docker.image.name}:${config.docker.image.version}
+          echo 'sleeping for 5 -waiting to open browser'
+          sleep 5
+          echo 'done sleeping'
+          open http://localhost:3000
+        fi
     `)
 }
 

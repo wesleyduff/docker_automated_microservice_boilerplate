@@ -1,4 +1,7 @@
 import chalk from 'chalk';
 
-
-console.log(chalk.magenta(`================== DONE : NODE SERVER (local) ========================`));
+if(process.env.TEST){
+    console.log(chalk.magenta(`================== DONE : NODE SERVER (local) ========================`));
+} else {
+    console.log(chalk.magenta('================== DONE : NODE SERVER (local) :  ' + chalk.red(`NEED TO FIX TESTS`) +'  ========================'));
+}

@@ -1,22 +1,23 @@
 import chalk from 'chalk';
 
+if(process.env.TEST){
 
-console.log(chalk.red(`
+    console.log(chalk.red(`
 ====================
 `));
 
-console.log(chalk.yellow(`
+    console.log(chalk.yellow(`
 
 Uploading docker image to rave-microservices repo on charter dev
 
 `))
 
-console.log(chalk.red(`
+    console.log(chalk.red(`
 ====================
 `));
 
 
-console.log(chalk.green(`
+    console.log(chalk.green(`
 
 IMPORTANT ***************************
 
@@ -36,4 +37,7 @@ Next you need to perform the steps to upload your docker container to raven-micr
 
 
 
-console.log(chalk.magenta(`================== DONE STAGE ========================`));
+    console.log(chalk.magenta(`================== DONE STAGE ========================`));
+} else {
+    console.log(chalk.magenta('================== DONE : STAGE : DOCKER :  ' + chalk.red(`NEED TO FIX TESTS`) +'  ========================'));
+}
