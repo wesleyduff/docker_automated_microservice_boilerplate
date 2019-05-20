@@ -61,6 +61,8 @@ what is Automated...
       - if you do not have this setup, you will need to create a few AWSPASS tickets
 - `npm run prod`
   - this is TBD
+- `npm run save-docker-locally`
+  - Saves the docker image to the dockerImages folder to hand off to QA
   
 **TESTING**
 

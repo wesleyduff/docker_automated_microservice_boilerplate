@@ -23,7 +23,8 @@
     "prod": "node scripts/prod/run_prod.js",
     "postprod": "node scripts/prod/post_prod.js",
     "docker-start": "node --experimental-modules app.mjs",
-    "clean-docker": "NODE_ENV=local node --experimental-modules scripts/misc/clean_images.mjs"
+    "clean-docker": "NODE_ENV=local node --experimental-modules scripts/misc/clean_images.mjs",
+    "save-docker-locally": "NODE_ENV=local node --experimental-modules scripts/misc/save_docker_image_to_folder.mjs"
   },
   "author": "",
   "license": "ISC",

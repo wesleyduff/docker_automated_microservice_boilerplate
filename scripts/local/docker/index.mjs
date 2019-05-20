@@ -58,7 +58,7 @@ export default (config) => {
         echo 'sleeping for 5 -waiting to open browser'
         sleep 5
         echo 'done sleeping'
-        open http://localhost:3000
+        open http://localhost:3000/swagger
         
         
          echo "
