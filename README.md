@@ -24,6 +24,7 @@ Key features
   - available as website (HTML)
 
 **AUTOMATION!** SCRIPTS \
+**note** scripts will NOT run all the way through if there are failing tests \
 what is Automated...
 - `npm run local`
   - runs the automation process to build a local container on your system 
@@ -75,9 +76,6 @@ what is Automated...
   - run nsp npm package manager checker. Security check.
 
 
-    
-
-
 # RUN COMMANDS
 * = requires software to be installed - read installation section
 - run locally in NODE SERVER - no container : `npm start`
@@ -120,6 +118,18 @@ Raven must control the creation of the docker file
   - this is due to best practices and securieis
     - We cannot add ssh keys to docker images / they cannot be removed once added fully
     
+    
+# Get ready for release
+- make sure tests are passing
+- make sure you test container with different environment variables
+  - start
+  - local
+  - stage
+  - prod
+- remove folders
+  - api/basics : because this is an example.. 
+    - make sure you remove the tests that go with the example or put an **x** before the test to make it skipped
+      - __tests\__ /example/* 
 
 # QA Testers 
 Run these commands to test docker container : Automation pending : TODO//
