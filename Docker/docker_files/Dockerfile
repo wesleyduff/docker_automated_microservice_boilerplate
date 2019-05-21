@@ -11,9 +11,6 @@ WORKDIR /data/apps/raven-web
 ARG NODE_ENV
 ENV NODE_ENV $NODE_ENV
 
-#install nano editor inside docker container
-RUN apt-get update && apt-get install nano
-
 # port 3000 is the port our node server runs on. If you change this, change the port for the node server as well
 EXPOSE 3000
 
