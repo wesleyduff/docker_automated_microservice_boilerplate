@@ -69,7 +69,7 @@ BUILDING DOCKER CONTAINER : ALL TESTS PASS
     else 
         echo "
 -----------------------------
-STOPPING : TESTS FAILED - fix tests and rerun script
+STOPPING : FAILED - fix issues and rerun script
 -----------------------------
 "
         export TEST=false

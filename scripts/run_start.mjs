@@ -14,7 +14,7 @@ STARTING NODE SERVER : ALL TESTS PASS
     else 
       echo "
 -----------------------------
-STOPPING : fix tests then try again
+STOPPING : fix issues then try again
 -----------------------------
        "
     fi
